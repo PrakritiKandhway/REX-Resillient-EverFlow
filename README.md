@@ -1,3 +1,4 @@
+![Everflow AI Banner](Docs/Everflow_banner.png)
 
 # Team REX: Resilient Everflow AI for Supply Chains  
 
