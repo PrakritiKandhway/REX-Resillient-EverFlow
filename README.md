@@ -1,5 +1,40 @@
-#  Team REX: Resilient Everflow AI for Supply Chains  
 
+# Team REX: Resilient Everflow AI for Supply Chains  
+
+
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Frontend-React.js-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/Styling-TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/API-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+<img src="https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+<img src="https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/ML-Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+<img src="https://img.shields.io/badge/Data-Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+<img src="https://img.shields.io/badge/Numerical-NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
+
+<br/>
+
+<img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" />
+
+</p>
+
+---
+
+##  Table of Contents  
+
+- [ Problem Statement](#-problem-statement)  
+- [ Major Causes of Supply Chain Disruptions](#️-major-causes-of-supply-chain-disruptions)  
+- [ The Core Issue](#-the-core-issue)  
+- [ Target Persona / Stakeholders](#-target-persona--stakeholders)  
+- [ Problem Scope](#-problem-scope)  
+- [ Our Solution](#-our-solution)  
+- [ System Workflow](#-system-workflow)  
+- [ Tech Stack](#️-tech-stack)  
+- [ Business Value](#-business-value)  
+- [ Vision](#-vision)  
 ---
 
 ##  Problem Statement  
