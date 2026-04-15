@@ -52,14 +52,14 @@ const HeroSection = ({ theme, setTheme }) => {
       </div>
 
       {/* CURSOR GLOW */}
-      <div
+      {/* <div
         className="fixed w-[400px] h-[400px] rounded-full blur-3xl opacity-30 pointer-events-none"
         style={{
           left: cursor.x - 200,
           top: cursor.y - 200,
           background: "radial-gradient(circle, #2563eb, #7c3aed)",
         }}
-      />
+      /> */}
 
       {/* NAVBAR */}
       <nav className={`fixed w-full z-50 px-6 md:px-12 py-4 flex items-center justify-between 
