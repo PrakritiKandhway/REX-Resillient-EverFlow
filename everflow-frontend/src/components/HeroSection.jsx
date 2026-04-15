@@ -180,14 +180,16 @@ const HeroSection = ({ theme, setTheme }) => {
 
           {/* RIGHT */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-10 md:mt-0"
-          >
-            <div className="glass p-8 rounded-2xl flex justify-center">
-              <img src={logo} className="w-56 md:w-64" />
-            </div>
-          </motion.div>
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="relative"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-3xl opacity-30 rounded-full"></div>
+
+          <div className="glass p-8 rounded-2xl shadow-2xl">
+            <img src={logo} className="w-64 float" />
+          </div>
+        </motion.div>
         
         </div>
     </section>
