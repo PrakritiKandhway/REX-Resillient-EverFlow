@@ -1,0 +1,6 @@
+Install these first after Cloning in everflow-frontend path of main file.
+----------------------------------------------------------------------------
+
+npm i 
+npm install framer-motion lucide-react
+npm install react-type-animation

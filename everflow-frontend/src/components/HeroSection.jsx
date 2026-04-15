@@ -1,21 +1,55 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sun, Moon, Menu, X } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
 import logo from "../assets/Everflow_logo.png";
+import Particles from "./Particles";
 
 const HeroSection = ({ theme, setTheme }) => {
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [active, setActive] = useState("features");
 
-  // Cursor glow
   useEffect(() => {
-    const move = (e) => setCursor({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
+  const handleScroll = () => {
+    // Navbar background
+    setScrolled(window.scrollY > 20);
+
+    // Active section highlight
+    const sections = ["features", "workflow", "blog"];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.offsetTop - 80;
+        if (window.scrollY >= top) {
+          setActive(id);
+        }
+      }
+    });
+  };
+
+  const move = (e) => {
+    setCursor({ x: e.clientX, y: e.clientY });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("mousemove", move);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("mousemove", move);
+  };
+}, []);
 
   return (
-    <section className="relative min-h-screen hero-bg overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
+
+      {/* PARTICLES */}
+      <div className="absolute inset-0 z-0">
+        <Particles />
+      </div>
 
       {/* CURSOR GLOW */}
       <div
@@ -28,41 +62,70 @@ const HeroSection = ({ theme, setTheme }) => {
       />
 
       {/* NAVBAR */}
-      <nav className="flex justify-between items-center px-6 md:px-12 py-5">
+      <nav className={`fixed w-full z-50 px-6 md:px-12 py-4 flex items-center justify-between 
+      ${scrolled ? "bg-white/5 backdrop-blur-xl border-b border-white/10" : ""}`}>
 
-        {/* Just for testing Tailwind */}
-        {/* <div className="bg-red-500 text-white p-5">
-        Tailwind Test
-        </div> */}
-
-        <div className="flex items-center gap-3">
-          <img src={logo} className="w-10" />
-          <span className="font-bold text-lg">EVERFLOW AI</span>
+        {/* LEFT LOGO */}
+        <div className="flex items-center gap-2">
+          <img src={logo} className="w-12 md:w-14" />
+          <span className="font-semibold text-lg">EVERFLOW AI</span>
         </div>
 
+        {/* CENTER MENU */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#features" className={`nav-link ${active === "features" ? "active" : ""}`}>Features</a>
+          <a href="#workflow" className={`nav-link ${active === "workflow" ? "active" : ""}`}>Workflow</a>
+          <a href="#blog" className={`nav-link ${active === "blog" ? "active" : ""}`}>Blog</a>
+        </div>
+
+        {/* RIGHT BUTTONS */}
         <div className="flex items-center gap-4">
 
-          {/* THEME */}
-          <button
-            onClick={() =>
-              setTheme(theme === "dark" ? "light" : "dark")
-            }
-            className="p-2 rounded-full glass"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+        {/* DESKTOP ONLY */}
+        <div className="hidden md:flex items-center gap-4">
+          <button className="text-gray-300 hover:text-white">Login</button>
 
-          <button
-            className="md:hidden"
-            onClick={() => setMenu(!menu)}
-          >
+          <button className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold">
+            Sign Up
+          </button>
+        </div>
+
+
+          {/* MOBILE MENU */}
+          <button className="md:hidden" onClick={() => setMenu(!menu)}>
             {menu ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
 
-      {/* HERO */}
-      <div className="flex flex-col md:flex-row items-center justify-center px-6 md:px-16 pt-20 gap-12">
+      {/* MOBILE MENU */}
+      {menu && (
+      <div className="md:hidden absolute top-16 left-0 w-full bg-black/90 backdrop-blur-xl p-6 z-40 animate-fadeInUp">
+
+        <div className="flex flex-col gap-5 text-center text-gray-300">
+
+          {/* NAV LINKS */}
+          <a href="#features" className="hover:text-blue-400 transition">Features</a>
+          <a href="#workflow" className="hover:text-blue-400 transition">Workflow</a>
+          <a href="#blog" className="hover:text-blue-400 transition">Blog</a>
+
+          {/* DIVIDER */}
+          <div className="border-t border-white/10 my-2"></div>
+
+          {/* AUTH BUTTONS */}
+          <button className="w-full text-center">Login</button>
+
+          <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded text-white">
+            Sign Up
+          </button>
+
+        </div>
+
+      </div>
+    )}
+
+      {/* HERO CONTENT */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center px-6 md:px-16 pt-32 gap-12">
 
         {/* LEFT */}
         <motion.div
@@ -70,17 +133,36 @@ const HeroSection = ({ theme, setTheme }) => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-xl text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-              Predict. Prevent.
-            </span>
-            <br />
-            Power Supply Chains
+
+          {/* TYPE ANIMATION */}
+          <div className="relative mb-6">
+
+          {/* glow */}
+          <div className="absolute -inset-10 bg-gradient-to-r from-blue-500/20 via-purple-400/10 to-blue-500/20 blur-3xl opacity-60"></div>
+
+          <h1 className="relative text-4xl md:text-6xl font-extrabold leading-tight min-h-[80px] md:min-h-[120px]">
+
+            <TypeAnimation
+              sequence={[
+                "Predict → Detect → Alert → Act",
+                2000,
+                "Prevent Loss Before It Happens",
+                2000,
+                "AI That Keeps Supply Chains Flowing",
+                2000,
+              ]}
+              speed={40}
+              repeat={Infinity}
+              wrapper="span"
+              className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+            />
+
           </h1>
+        </div>
 
           <p className="text-gray-400 mb-8">
-            REX leverages AI to predict disruptions before they occur,
-            enabling resilient and uninterrupted supply chain operations.
+            REX enables businesses to build resilient supply chains by predicting risks,
+            automating responses, and preventing operational losses.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -88,26 +170,26 @@ const HeroSection = ({ theme, setTheme }) => {
               Get Started <ArrowRight size={18} />
             </button>
 
-            <button className="px-8 py-4 rounded-full border border-white/20 glass">
-              See Demo
+            <button className="px-8 py-4 rounded-full border border-white/20">
+              Request Demo
             </button>
           </div>
-        </motion.div>
 
-        {/* RIGHT */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-3xl opacity-30 rounded-full"></div>
+      
+          </motion.div>
 
-          <div className="glass p-8 rounded-2xl shadow-2xl">
-            <img src={logo} className="w-64 float" />
-          </div>
-        </motion.div>
-
-      </div>
+          {/* RIGHT */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-10 md:mt-0"
+          >
+            <div className="glass p-8 rounded-2xl flex justify-center">
+              <img src={logo} className="w-56 md:w-64" />
+            </div>
+          </motion.div>
+        
+        </div>
     </section>
   );
 };

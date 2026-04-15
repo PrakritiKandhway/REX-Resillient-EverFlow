@@ -41,3 +41,37 @@ body {
 .float {
   animation: float 4s ease-in-out infinite;
 }
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.nav-link {
+  position: relative;
+  color: #9ca3af;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link.active {
+  color: white;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #3b82f6, #7c3aed);
+}

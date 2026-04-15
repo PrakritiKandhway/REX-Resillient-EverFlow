@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import HeroSection from "./components/HeroSection";
+import FeatureSection from "./components/FeatureSection";
 import Loading from "./components/Loading";
 
 function App() {
@@ -15,7 +16,12 @@ function App() {
       {loading ? (
         <Loading onFinish={() => setLoading(false)} />
       ) : (
-        <HeroSection theme={theme} setTheme={setTheme} />
+        <>
+          <div className="fade-in">
+            <HeroSection theme={theme} setTheme={setTheme} />
+            <FeatureSection />
+          </div>
+        </>
       )}
     </>
   );
