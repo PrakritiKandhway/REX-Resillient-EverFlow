@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/Everflow_logo.png";
 
 const Login = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +25,10 @@ const Login = () => {
       const data = await res.json();
       console.log(data);
 
-      if (data.success) {
+    if (data.success) {
+        localStorage.setItem("token", data.token); // save token
         alert("Login successful");
+        navigate("/");
       } else {
         alert(data.message);
       }
