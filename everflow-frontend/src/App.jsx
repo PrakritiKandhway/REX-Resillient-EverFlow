@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
 import FeatureSection from "./components/FeatureSection";
 import Loading from "./components/Loading";
+import SignUp from "./pages/SignUp";
+
+
+const Home = ({ theme, setTheme }) => (
+  <div className="fade-in">
+    <HeroSection theme={theme} setTheme={setTheme} />
+    <FeatureSection />
+  </div>
+);
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -12,18 +22,16 @@ function App() {
   }, [theme]);
 
   return (
-    <>
+    <BrowserRouter>
       {loading ? (
         <Loading onFinish={() => setLoading(false)} />
       ) : (
-        <>
-          <div className="fade-in">
-            <HeroSection theme={theme} setTheme={setTheme} />
-            <FeatureSection />
-          </div>
-        </>
+        <Routes>
+          <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       )}
-    </>
+    </BrowserRouter>
   );
 }
 

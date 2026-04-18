@@ -4,13 +4,14 @@ import { ArrowRight, Sun, Moon, Menu, X } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 import logo from "../assets/Everflow_logo.png";
 import Particles from "./Particles";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = ({ theme, setTheme }) => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState("features");
-
+  const navigate = useNavigate();
   useEffect(() => {
   const handleScroll = () => {
     // Navbar background
@@ -85,7 +86,8 @@ const HeroSection = ({ theme, setTheme }) => {
         <div className="hidden md:flex items-center gap-4">
           <button className="text-gray-300 hover:text-white">Login</button>
 
-          <button className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold">
+          <button className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold"
+          onClick={()=>navigate("/signup")}>
             Sign Up
           </button>
         </div>
@@ -115,7 +117,8 @@ const HeroSection = ({ theme, setTheme }) => {
           {/* AUTH BUTTONS */}
           <button className="w-full text-center">Login</button>
 
-          <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded text-white">
+          <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded text-white"
+           onClick={()=>navigate("/signup")}>
             Sign Up
           </button>
 
