@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import FeatureSection from "./components/FeatureSection";
 import Loading from "./components/Loading";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 
 const Home = ({ theme, setTheme }) => (
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       )}
     </BrowserRouter>

@@ -84,7 +84,10 @@ const HeroSection = ({ theme, setTheme }) => {
 
         {/* DESKTOP ONLY */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="text-gray-300 hover:text-white">Login</button>
+          <button className="text-gray-300 hover:text-white"
+          onClick={() => navigate("/login")}>
+           Login
+          </button>
 
           <button className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold"
           onClick={()=>navigate("/signup")}>
@@ -115,7 +118,10 @@ const HeroSection = ({ theme, setTheme }) => {
           <div className="border-t border-white/10 my-2"></div>
 
           {/* AUTH BUTTONS */}
-          <button className="w-full text-center">Login</button>
+          <button className="text-gray-300 hover:text-white"
+          onClick={() => navigate("/login")}
+          >Login
+          </button>
 
           <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded text-white"
            onClick={()=>navigate("/signup")}>
