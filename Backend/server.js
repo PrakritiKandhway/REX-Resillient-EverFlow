@@ -15,6 +15,12 @@ app.use("/api/auth", authRoutes);
 const supplierRoutes=require("./routes/supplierRoutes");
 app.use("/api/suppliers",supplierRoutes);
 
+const inventoryRoutes=require("./routes/inventoryRoutes");
+app.use("/api/inventory",inventoryRoutes);
+
+const productRoutes = require("./routes/productRoutes");
+app.use("/api/products", productRoutes);
+
 // Default route
 app.get("/", (req, res) => {
     res.send("API is running...");
