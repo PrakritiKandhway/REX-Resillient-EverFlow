@@ -12,6 +12,9 @@ app.use(cors());
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
 
+const supplierRoutes=require("./routes/supplierRoutes");
+app.use("/api/suppliers",supplierRoutes);
+
 // Default route
 app.get("/", (req, res) => {
     res.send("API is running...");
