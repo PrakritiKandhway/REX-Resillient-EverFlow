@@ -1,7 +1,8 @@
 const mongoose=require("mongoose")
 const inventorySchema=new mongoose.Schema({
   productId: {
-    type:ObjectId,
+    type:mongoose.Schema.Types.ObjectId,
+    ref: "Product",
     required:true
 },
   stock: {
