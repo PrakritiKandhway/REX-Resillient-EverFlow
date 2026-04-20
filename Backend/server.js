@@ -21,6 +21,8 @@ app.use("/api/inventory",inventoryRoutes);
 const productRoutes = require("./routes/productRoutes");
 app.use("/api/products", productRoutes);
 
+const orderRoutes = require("./routes/orderRoutes");
+app.use("/api/orders", orderRoutes);
 // Default route
 app.get("/", (req, res) => {
     res.send("API is running...");
