@@ -12,23 +12,40 @@ const HeroSection = ({ theme, setTheme }) => {
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState("features");
   const navigate = useNavigate();
+  
   useEffect(() => {
   const handleScroll = () => {
-    // Navbar background
     setScrolled(window.scrollY > 20);
 
-    // Active section highlight
-    const sections = ["features", "workflow", "blog"];
+    const scrollY = window.scrollY + window.innerHeight;
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
+    const footer = document.getElementById("footer");
+
+    // 🔥 FIX: detect bottom of page
+    if (footer && scrollY >= document.body.offsetHeight - 50) {
+      setActive("footer");
+      return;
+    }
+
+    const sections = [
+      { id: "features", key: "features" },
+      { id: "workflow", key: "workflow" },
+    ];
+
+    let current = "";
+
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id);
       if (el) {
-        const top = el.offsetTop - 80;
-        if (window.scrollY >= top) {
-          setActive(id);
+        const rect = el.getBoundingClientRect();
+
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+          current = section.key;
         }
       }
     });
+
+    if (current) setActive(current);
   };
 
   const move = (e) => {
@@ -76,7 +93,7 @@ const HeroSection = ({ theme, setTheme }) => {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#features" className={`nav-link ${active === "features" ? "active" : ""}`}>Features</a>
           <a href="#workflow" className={`nav-link ${active === "workflow" ? "active" : ""}`}>Workflow</a>
-          <a href="#blog" className={`nav-link ${active === "blog" ? "active" : ""}`}>Blog</a>
+          <a href="#footer" className={`nav-link ${active === "footer" ? "active" : ""}`}>About us</a>
         </div>
 
         {/* RIGHT BUTTONS */}
@@ -112,7 +129,7 @@ const HeroSection = ({ theme, setTheme }) => {
           {/* NAV LINKS */}
           <a href="#features" className="hover:text-blue-400 transition">Features</a>
           <a href="#workflow" className="hover:text-blue-400 transition">Workflow</a>
-          <a href="#blog" className="hover:text-blue-400 transition">Blog</a>
+          <a href="#footer" className="hover:text-blue-400 transition">About us</a>
 
           {/* DIVIDER */}
           <div className="border-t border-white/10 my-2"></div>

@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import WorkflowSection from "./components/WorkflowSection";
+import Footer from "./components/Footer";
 
 
 
@@ -14,6 +15,7 @@ const Home = ({ theme, setTheme }) => (
     <HeroSection theme={theme} setTheme={setTheme} />
     <WorkflowSection />
     <FeatureSection />
+    <Footer />
   </div>
 );
 
