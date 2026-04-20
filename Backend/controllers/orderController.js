@@ -1,10 +1,29 @@
 const Order = require("../models/Order");
+const {checkRisk,suggestSupplier}=require("../services/riskServices")
+const Inventory=require("../models/Inventory");
+const Supplier=require("../models/Supplier");
 
 // CREATE order
 exports.addOrder = async (req, res) => {
   try {
-    const order = await Order.create(req.body);
-    res.status(201).json(order);
+    const {productId,supplierId,quantity} = req.body;
+
+    const order = await Order.create({
+      productId,
+      supplierId,
+      quantity
+    });
+    const inventory=await Inventory.findOne({productId});
+    const supplier=await Supplier.findById(supplierId);
+    const allSuppliers=await Supplier.find();
+
+    const risks=checkRisk(order,inventory,supplier);
+    const suggestion=suggestSupplier(allSuppliers);
+    res.status(201).json({
+      order,
+      risks,
+      suggestedSupplier: suggestion
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
