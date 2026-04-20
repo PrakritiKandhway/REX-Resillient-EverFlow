@@ -35,10 +35,30 @@ const FeatureSection = () => {
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2 }}
-            className="p-8 rounded-2xl glass border border-white/10 hover:scale-105 transition"
+            className="relative group"
           >
-            <h3 className="text-xl font-semibold mb-3">{f.title}</h3>
-            <p className="text-gray-400">{f.desc}</p>
+
+            {/* 🔥 Animated Border */}
+            <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 animate-borderMove opacity-70 group-hover:opacity-100"></div>
+
+            {/* CARD */}
+            <div className="relative p-8 rounded-2xl glass border border-white/10 bg-black/30 backdrop-blur-xl group-hover:scale-105 transition duration-300">
+
+              {/* TITLE */}
+              <h3 className="text-xl font-semibold mb-3 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                {f.title}
+              </h3>
+
+              {/* DESC */}
+              <p className="text-gray-300">
+                {f.desc}
+              </p>
+
+              {/* HOVER GLOW */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition"></div>
+
+            </div>
+
           </motion.div>
         ))}
 

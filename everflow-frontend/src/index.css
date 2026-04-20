@@ -75,3 +75,13 @@ body {
   height: 2px;
   background: linear-gradient(to right, #3b82f6, #7c3aed);
 }
+
+@keyframes borderMove {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+.animate-borderMove {
+  background-size: 200% 100%;
+  animation: borderMove 4s linear infinite;
+}

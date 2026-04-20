@@ -3,13 +3,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
 import FeatureSection from "./components/FeatureSection";
 import Loading from "./components/Loading";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import WorkflowSection from "./components/WorkflowSection";
+
 
 
 const Home = ({ theme, setTheme }) => (
   <div className="fade-in">
     <HeroSection theme={theme} setTheme={setTheme} />
+    <WorkflowSection />
     <FeatureSection />
   </div>
 );
