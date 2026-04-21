@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 const alertSchema=new mongoose.Schema({
-    alert:{
+    type:{
         type: String, // "delay", "low_stock"
         required:true
     },
@@ -12,9 +12,9 @@ const alertSchema=new mongoose.Schema({
         type:String, // "low", "medium", "high"
         required:true
     },
-    createdAt:{
-        type:Date,
-        required:true
+    orderId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Order"
     }
 },{timestamps:true});
 module.exports=mongoose.model("Alert",alertSchema);

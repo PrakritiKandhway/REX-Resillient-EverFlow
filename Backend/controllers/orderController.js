@@ -2,6 +2,7 @@ const Order = require("../models/Order");
 const {checkRisk,suggestSupplier}=require("../services/riskServices")
 const Inventory=require("../models/Inventory");
 const Supplier=require("../models/Supplier");
+const Alert = require("../models/Alert");
 
 // CREATE order
 exports.addOrder = async (req, res) => {
@@ -19,6 +20,17 @@ exports.addOrder = async (req, res) => {
 
     const risks=checkRisk(order,inventory,supplier);
     const suggestion=suggestSupplier(allSuppliers);
+    
+    // CREATE ALERTS
+    for (let risk of risks) {
+      await Alert.create({
+        type: risk.type,
+        message: risk.message,
+        severity: risk.severity,
+        orderId: order._id
+      });
+    }
+
     res.status(201).json({
       order,
       risks,
