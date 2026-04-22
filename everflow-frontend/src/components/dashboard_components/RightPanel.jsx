@@ -8,7 +8,7 @@ const RightPanel = () => {
       <div className="space-y-4 mb-8 text-sm text-gray-400">
         <p>⚠️ High disruption risk detected</p>
         <p>⚠️ Supplier delay expected</p>
-        <p>⚠️ Logistics issue identified</p>
+        <p>⚠️ Logistics issues identified</p>
       </div>
 
       {/* ACTIVITY */}
