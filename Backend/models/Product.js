@@ -6,6 +6,10 @@ const productSchema=new mongoose.Schema({
         },
         category:{
             type:String,
+        },
+        profitPerUnit: {
+        type: Number,
+        required: true
         }
 },{timestamps:true});
 module.exports = mongoose.model("Product", productSchema);
