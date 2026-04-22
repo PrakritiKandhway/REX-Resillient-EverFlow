@@ -23,19 +23,20 @@ const Login = () => {
       });
 
       const data = await res.json();
-      console.log(data);
 
-    if (data.success) {
-        localStorage.setItem("token", data.token); // save token
-        alert("Login successful");
+      console.log("LOGIN RESPONSE:", data);
+
+      if (res.ok && data.success) {
+        localStorage.setItem("token", data.token);
+        alert(data.message || "Login successful");
         navigate("/dashboard");
       } else {
-        alert(data.message);
+        alert(data.message || data.error || "Login failed");
       }
-    } catch (err) {
-      console.log("Error:", err);
-    }
-  };
+      } catch (err) {
+        console.log("Error:", err);
+      }
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#05070a] text-white font-sans">
