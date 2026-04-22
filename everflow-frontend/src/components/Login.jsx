@@ -28,7 +28,7 @@ const Login = () => {
     if (data.success) {
         localStorage.setItem("token", data.token); // save token
         alert("Login successful");
-        navigate("/");
+        navigate("/dashboard");
       } else {
         alert(data.message);
       }
