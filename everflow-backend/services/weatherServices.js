@@ -16,4 +16,4 @@ const getWeatherRisk=async(location)=>{
         return{weather:"Unknown",risk:0.3};
     }
 };
-GPUShaderModule.exports={getWeatherRisk};
+module.exports={getWeatherRisk};

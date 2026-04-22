@@ -29,5 +29,3 @@ const suggestSupplier=(suppliers)=>{
     .sort((a,b)=>b.reliabilityScore-a.reliabilityScore)[0];
 };
 module.exports={checkRisk,suggestSupplier}
-
-alertroutes
