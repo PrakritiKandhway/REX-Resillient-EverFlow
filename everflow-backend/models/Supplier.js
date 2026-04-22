@@ -12,7 +12,7 @@ const supplierSchema=new mongoose.Schema({
         type:Number,
         required:true,
         min:0,
-        max:100
+        max:1
     },
     cost:{
         type:Number,
@@ -21,6 +21,14 @@ const supplierSchema=new mongoose.Schema({
     available:{
         type:Boolean,
         default:true
+    },
+    avgDelayDays: {
+    type: Number,
+    default: 0
+    },
+    supplyVolumePerDay: {
+    type: Number,
+    default: 0
     }
 
 },{timestamps:true});

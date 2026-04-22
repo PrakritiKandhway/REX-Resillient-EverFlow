@@ -7,6 +7,9 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import WorkflowSection from "./components/WorkflowSection";
 import Footer from "./components/Footer";
+import Dashboard from "./components/Dashboard";
+import { Navigate } from "react-router-dom";
+
 
 
 
@@ -22,6 +25,10 @@ const Home = ({ theme, setTheme }) => (
 function App() {
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState("dark");
+  const isLoggedIn = true;
+
+
+
 
   useEffect(() => {
     document.documentElement.classList.toggle("light", theme === "light");
@@ -36,6 +43,7 @@ function App() {
           <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}/>
         </Routes>
       )}
     </BrowserRouter>
