@@ -1,15 +1,21 @@
 import { Menu, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import logo from "../../assets/Everflow_logo.png";
 
 const Topbar = ({ setMenuOpen }) => {
   const [time, setTime] = useState(new Date());
   const [openProfile, setOpenProfile] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
+  const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/login");
+  };
 
   return (
     <div className="w-full sticky top-0 z-40 flex items-center justify-between px-4 md:px-8 py-4 md:py-5 border-b border-white/10 bg-black/70 backdrop-blur-xl">
@@ -48,8 +54,10 @@ const Topbar = ({ setMenuOpen }) => {
       <div className="flex items-center gap-3">
 
         {/* LOGOUT (DESKTOP) */}
-        <button className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-red-500/20 transition">
-            <LogOut size={18} />
+        <button
+          onClick={handleLogout}
+          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-red-500/20 transition">
+          <LogOut size={18} />
             <span className="text-sm">Logout</span>
         </button>
 
@@ -68,8 +76,10 @@ const Topbar = ({ setMenuOpen }) => {
               <p className="px-3 py-2 hover:bg-white/10 rounded cursor-pointer">
                 Profile
               </p>
-              <p className="px-3 py-2 hover:bg-white/10 rounded cursor-pointer">
-                Logout
+              <p
+              onClick={handleLogout}
+              className="px-3 py-2 hover:bg-white/10 rounded cursor-pointer">
+              Logout
               </p>
             </div>
           )}
