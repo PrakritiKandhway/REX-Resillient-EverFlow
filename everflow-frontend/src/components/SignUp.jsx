@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from "../assets/Everflow_logo.png";
 
 const SignUp = () => {
@@ -123,11 +123,13 @@ const SignUp = () => {
                         Get Started
                     </button>
                 </form>
-
+                {/* Redirect */}
                 <div className="text-center">
                     <p className="text-sm text-gray-500">
                         Already have an account?{' '}
-                        <a href="/login" className="text-purple-400 hover:text-purple-300 font-medium">Log in</a>
+                    <Link to="/login" className="text-purple-400">
+                        Login
+                    </Link>
                     </p>
                 </div>
             </div>
