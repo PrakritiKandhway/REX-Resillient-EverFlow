@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/Everflow_logo.png";
 
 const Login = () => {
@@ -106,9 +106,9 @@ const Login = () => {
         {/* Redirect */}
         <p className="text-sm text-center text-gray-500">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-purple-400">
-            Sign up
-          </a>
+         <Link to="/signup" className="text-purple-400">
+          Sign up
+         </Link>
         </p>
       </div>
     </div>
