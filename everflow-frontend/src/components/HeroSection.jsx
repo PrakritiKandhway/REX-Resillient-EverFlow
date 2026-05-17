@@ -176,6 +176,8 @@ const HeroSection = ({ theme, setTheme }) => {
                 2000,
                 "AI That Keeps Supply Chains Flowing",
                 2000,
+                "EVERFLOW AI",
+                2000,
               ]}
               speed={40}
               repeat={Infinity}
@@ -202,14 +204,13 @@ const HeroSection = ({ theme, setTheme }) => {
           </div>
 
       
-          </motion.div>
+        </motion.div>
 
           {/* RIGHT */}
           <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="relative"
-        >
+          className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-3xl opacity-30 rounded-full"></div>
 
           <div className="glass p-8 rounded-2xl shadow-2xl">
