@@ -31,7 +31,8 @@ const RiskPieChart = () => {
               data={data}
               cx="50%"
               cy="50%"
-              outerRadius={100}
+              outerRadius={90}
+              innerRadius={35}
               dataKey="value"
               label
             >
@@ -42,6 +43,15 @@ const RiskPieChart = () => {
                 />
               ))}
             </Pie>
+            <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className="fill-white text-lg font-bold"
+            >
+            86
+            </text>
 
             <Tooltip />
 
@@ -49,6 +59,55 @@ const RiskPieChart = () => {
         </ResponsiveContainer>
 
       </div>
+      {/* LEGENDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+
+        <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <p className="text-sm text-gray-300">High Risk</p>
+            </div>
+
+            <h3 className="text-2xl font-bold text-white">
+            12
+            </h3>
+
+            <p className="text-xs text-red-400 mt-1">
+            Critical suppliers
+            </p>
+        </div>
+
+        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <p className="text-sm text-gray-300">Medium Risk</p>
+            </div>
+
+            <h3 className="text-2xl font-bold text-white">
+            26
+            </h3>
+
+            <p className="text-xs text-yellow-400 mt-1">
+            Needs monitoring
+            </p>
+        </div>
+
+        <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <p className="text-sm text-gray-300">Safe Suppliers</p>
+            </div>
+
+            <h3 className="text-2xl font-bold text-white">
+            48
+            </h3>
+
+            <p className="text-xs text-green-400 mt-1">
+            Stable supply chain
+            </p>
+        </div>
+
+        </div>
 
     </div>
   );

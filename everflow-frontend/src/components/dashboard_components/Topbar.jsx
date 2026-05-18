@@ -14,7 +14,7 @@ const Topbar = ({ setMenuOpen }) => {
   }, []);
   const handleLogout = () => {
   localStorage.removeItem("token");
-  navigate("/login");
+  navigate("/");
   };
 
   return (
