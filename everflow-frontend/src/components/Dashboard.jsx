@@ -5,6 +5,8 @@ import RightPanel from "./dashboard_components/RightPanel";
 import StatCard from "./dashboard_components/StatCard";
 import InsightsPanel from "./dashboard_components/InsightsPanel";
 import SupplierTable from "./dashboard_components/SupplierTable";
+import SalesCard from "./dashboard_components/SalesCard";
+import RiskPieChart from "./dashboard_components/RiskPieChart";
 
 const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,76 +39,89 @@ const Dashboard = () => {
         <Topbar setMenuOpen={setMenuOpen} />
 
         {/* CONTENT AREA */}
-        <div className="flex flex-1">
+        <div className="flex-1 p-6 md:p-8 pt-12 md:pt-20">
 
-          {/* CENTER CONTENT */}
-          <div className="flex-1 p-6 md:p-8 pt-12 md:pt-20">
+          {/* MOBILE WELCOME */}
+          <div className="md:hidden -mx-6 mb-6 px-6 py-4 bg-white/5 border-b border-white/10 text-center">
 
-            
-            {/* MOBILE WELCOME */}
-            <div className="md:hidden -mx-6 mb-6 px-6 py-4 bg-white/5 border-b border-white/10 text-center">
-            
             <h2 className="text-base text-gray-300">
-                Welcome back, <span className="text-white font-semibold">User</span>
+              Welcome back, <span className="text-white font-semibold">User</span>
             </h2>
 
             <p className="text-sm mt-1 font-semibold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-                {time.toLocaleTimeString()} • {time.toLocaleDateString()}
+              {time.toLocaleTimeString()} • {time.toLocaleDateString()}
             </p>
-
-            </div>
-
-            {/* HEADER */}
-            <h1 className="text-2xl font-semibold mb-2">Overview</h1>
-
-            {/* <h2 className="text-sm text-gray-400 mb-6">
-              Welcome back, <span className="text-white font-medium">User</span>
-            </h2> */}
-
-            {/* 🔥 STAT CARDS */}
-            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-
-              <StatCard
-                title="High Risk Suppliers"
-                value="12"
-                change="+2 this week"
-                color="text-red-400"
-              />
-
-              <StatCard
-                title="Medium Risk"
-                value="26"
-                change="+5 updated"
-                color="text-yellow-400"
-              />
-
-              <StatCard
-                title="Safe Suppliers"
-                value="48"
-                change="Stable"
-                color="text-green-400"
-              />
-
-              <StatCard
-                title="Estimated Loss Risk"
-                value="₹1.2L"
-                change="+18% increase"
-                color="text-purple-400"
-              />
-
-            </div>
-
-            {/* 🧠 AI INSIGHTS */}
-            <InsightsPanel />
-
-            {/* 📦 SUPPLIER TABLE */}
-            <SupplierTable />
 
           </div>
 
-          {/* RIGHT PANEL */}
-          <div className="hidden xl:block">
-            <RightPanel />
+          {/* HEADER */}
+          <h1 className="text-2xl font-semibold mb-6">Overview</h1>
+
+          {/* MAIN GRID */}
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+            {/* LEFT CONTENT */}
+            <div className="xl:col-span-2 space-y-6">
+
+              {/* 🔥 STAT CARDS */}
+              <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                <StatCard
+                  title="High Risk Suppliers"
+                  value="12"
+                  change="+2 this week"
+                  color="text-red-400"
+                />
+
+                <StatCard
+                  title="Medium Risk"
+                  value="26"
+                  change="+5 updated"
+                  color="text-yellow-400"
+                />
+
+                <StatCard
+                  title="Safe Suppliers"
+                  value="48"
+                  change="Stable"
+                  color="text-green-400"
+                />
+
+                <StatCard
+                  title="Estimated Loss Risk"
+                  value="₹1.2L"
+                  change="+18% increase"
+                  color="text-purple-400"
+                />
+
+              </div>
+
+              {/* AI + SALES SECTION */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                {/* AI INSIGHTS */}
+                <div className="lg:col-span-2">
+                  <InsightsPanel />
+                </div>
+
+                {/* SALES CARD */}
+                <SalesCard />
+
+              </div>
+
+              {/* PIE CHART */}
+              <RiskPieChart />
+
+              {/* SUPPLIER TABLE */}
+              <SupplierTable />
+
+            </div>
+
+            {/* DESKTOP RIGHT PANEL */}
+            <div className="hidden xl:block">
+              <RightPanel />
+            </div>
+
           </div>
 
         </div>
