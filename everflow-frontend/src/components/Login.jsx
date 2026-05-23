@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/Everflow_logo.png";
 
@@ -6,6 +7,7 @@ const Login = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const Login = () => {
       console.log("LOGIN RESPONSE:", data);
 
       if (res.ok && data.success) {
-        localStorage.setItem("token", data.token);
+        login(data.token)
         alert(data.message || "Login successful");
         navigate("/dashboard");
       } else {
