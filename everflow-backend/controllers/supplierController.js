@@ -1,15 +1,48 @@
 const Supplier=require("../models/Supplier")
-//Create
+
+//Create a supplier 
 exports.addSupplier =async(req,res)=>{
     try {
         const supplier=await Supplier.create(req.body);
-        res.json(supplier);
+        res.status(201).json({
+            message:"Supplier created successfully",
+            supplier
+        });
     } catch (err) {
         res.status(500).json({error:err.message});
     }
 };
-//Read
+
+//Read all suppliers
 exports.getSuppliers=async(req,res)=>{
-    const suppliers=await Supplier.find();
-    res.json(suppliers);
+    try{
+        const suppliers=await Supplier.find();
+        res.json(suppliers);
+    } catch(err){
+        res.status(500).json({error:err.message});
+    }
+};
+
+exports.updateSupplier=async(req,res)=>{
+    try{
+        const supplier=await Supplier.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        if(!supplier){
+            return res.status(404).json({error:"Supplier not found"});
+        }
+        res.json(supplier);
+    } catch(err){
+        res.status(500).json({error:err.message});
+    }
+};
+
+exports.deleteSupplier=async(req,res)=>{
+    try{
+        const supplier=await Supplier.findByIdAndDelete(req.params.id);
+        if(!supplier){
+            return res.status(404).json({error:"Supplier not found"});
+        }
+        res.json({message:"Supplier deleted successfully"});
+    } catch(err){
+        res.status(500).json({error:err.message});
+    }
 };
