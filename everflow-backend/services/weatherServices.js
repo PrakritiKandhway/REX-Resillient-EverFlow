@@ -1,3 +1,5 @@
+// It fetches weather data for a location and assigns a risk score based on the weather conditions. 
+
 const getWeatherRisk=async(location)=>{
     try {
         const res = await fetch(

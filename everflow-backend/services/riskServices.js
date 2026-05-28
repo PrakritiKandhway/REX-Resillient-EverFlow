@@ -1,3 +1,5 @@
+// It flags active risk based upon order status, inventory levels, and supplier reliability. 
+
 const checkRisk=(order,inventory,supplier)=>{
     let risks=[];
     if(order.status === "delayed"){
@@ -23,9 +25,5 @@ const checkRisk=(order,inventory,supplier)=>{
     }
     return risks;
 };
-const suggestSupplier=(suppliers)=>{
-    return suppliers
-    .filter(s=>s.available)
-    .sort((a,b)=>b.reliabilityScore-a.reliabilityScore)[0];
-};
-module.exports={checkRisk,suggestSupplier}
+
+module.exports={checkRisk}

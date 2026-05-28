@@ -32,6 +32,9 @@ app.use("/api/products", ensureAuthenticated, productRoutes);
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/api/orders", ensureAuthenticated, orderRoutes);
 
+const alertRoutes = require("./routes/alertRoutes");
+app.use("/api/alerts", ensureAuthenticated, alertRoutes);
+
 // Default route
 app.get("/", (req, res) => {
   res.send("API is running...");

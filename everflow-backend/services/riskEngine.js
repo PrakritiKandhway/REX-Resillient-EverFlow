@@ -1,3 +1,5 @@
+// It gives a score to supplier using weather and reliability data.
+
 const calculateRisk = (supplier, weatherRisk) => {
   const reliabilityFactor = (1 - supplier.reliabilityScore) * 0.5;
   const delayFactor = (supplier.avgDelayDays / 10) * 0.2;
