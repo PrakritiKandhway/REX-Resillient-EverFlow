@@ -20,7 +20,7 @@ const signup = async (req, res) => {
         const userExist = await User.findOne({ $or: query });
 
         if (userExist) {
-            return res.status(400).json({
+            return res.status(409).json({
                 message: "User already exists!"
             });
         }
@@ -39,7 +39,10 @@ const signup = async (req, res) => {
 
         res.status(201).json({
             message: "User created successfully",
-            user
+            // user
+            name : user.name,
+            email : user.email,
+            phone : user.phone,
         });
 
     } catch (error) {

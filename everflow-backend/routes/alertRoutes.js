@@ -7,4 +7,4 @@ router.get("/",async(req,res)=>{
     const alerts=await Alert.find().populate("orderId");
     res.json(alerts);
 });
-momdule.exports=router;
+module.exports=router;
